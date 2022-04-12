@@ -10,19 +10,41 @@ class BankAccount:
     self.balance = self.balance + deposit_amount
     if (deposit_amount < 0):
       return False
-    else: return 'Your new balance is ${} after depositing ${}.'.format(self.balance, deposit_amount)
+    else: return self.balance
 
   def withdraw(self, withdrawal_amount):
     self.balance = self.balance - withdrawal_amount
     if (withdrawal_amount < 0):
       return False
-    else: return 'Your new balance is ${} after withdrawing ${}.'.format(self.balance, withdrawal_amount)
+    else: return self.balance
 
   def accumulate_interest(self):
     self.balance = (self.balance * self.interest_rate) + self.balance
+    return self.balance
 
 class ChildrensAccount:
-  pass
+  def __init__(self, balance = 0, interest_rate = 0):
+    self.balance = balance
+    self.interest_rate = interest_rate
+
+  def __str__(self):
+    return 'Current balance is ${}.'.format(self.balance)
+  
+  def deposit(self, deposit_amount):
+    self.balance = self.balance + deposit_amount
+    if (deposit_amount < 0):
+      return False
+    else: return self.balance
+  
+  def withdraw(self, withdrawal_amount):
+    self.balance = self.balance - withdrawal_amount
+    if (withdrawal_amount < 0):
+      return False
+    else: return self.balance
+
+  def accumulate_interest(self):
+    self.balance = self.balance + 10
+    return self.balance
 
 class OverdraftAccount:
   pass
