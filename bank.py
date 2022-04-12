@@ -1,17 +1,25 @@
 class BankAccount:
-  def __init__(self, balance = 0):
+  def __init__(self, balance = 0, interest_rate = .02):
     self.balance = balance
-
-  def deposit(self, deposit_amount):
-    self.balance = self.balance + deposit_amount
-    return 'Your new balance is ${} after depositing ${}.'.format(self.balance, deposit_amount)
-
-  def withdraw(self, withdrawal_amount):
-    self.balance = self.balance - withdrawal_amount
-    return 'Your new balance is ${} after withdrawing ${}.'.format(self.balance, withdrawal_amount)
+    self.interest_rate = interest_rate
 
   def __str__(self):
     return 'Current balance is ${}.'.format(self.balance)
+
+  def deposit(self, deposit_amount):
+    self.balance = self.balance + deposit_amount
+    if (deposit_amount < 0):
+      return False
+    else: return 'Your new balance is ${} after depositing ${}.'.format(self.balance, deposit_amount)
+
+  def withdraw(self, withdrawal_amount):
+    self.balance = self.balance - withdrawal_amount
+    if (withdrawal_amount < 0):
+      return False
+    else: return 'Your new balance is ${} after withdrawing ${}.'.format(self.balance, withdrawal_amount)
+
+  def accumulate_interest(self):
+    self.balance = (self.balance * self.interest_rate) + self.balance
 
 class ChildrensAccount:
   pass
