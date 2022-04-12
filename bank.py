@@ -1,5 +1,17 @@
 class BankAccount:
-  pass
+  def __init__(self, balance = 0):
+    self.balance = balance
+
+  def deposit(self, deposit_amount):
+    self.balance = self.balance + deposit_amount
+    return 'Your new balance is ${} after depositing ${}.'.format(self.balance, deposit_amount)
+
+  def withdraw(self, withdrawal_amount):
+    self.balance = self.balance - withdrawal_amount
+    return 'Your new balance is ${} after withdrawing ${}.'.format(self.balance, withdrawal_amount)
+
+  def __str__(self):
+    return 'Current balance is ${}.'.format(self.balance)
 
 class ChildrensAccount:
   pass
@@ -8,6 +20,7 @@ class OverdraftAccount:
   pass
 
 basic_account = BankAccount()
+print(basic_account)
 basic_account.deposit(600)
 print("Basic account has ${}".format(basic_account.balance))
 basic_account.withdraw(17)
