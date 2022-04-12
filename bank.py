@@ -47,7 +47,33 @@ class ChildrensAccount:
     return self.balance
 
 class OverdraftAccount:
-  pass
+  def __init__(self, overdraft_penalty = 40, balance = 0, interest_rate = .02):
+    self.balance = balance
+    self.overdraft_penalty = overdraft_penalty
+    self.interest_rate = interest_rate
+  
+  def __str__(self):
+    return 'Current balance is ${}.'.format(self.balance)
+
+  def deposit(self, deposit_amount):
+    self.balance = self.balance + deposit_amount
+    if (deposit_amount < 0):
+      return False
+    else: return self.balance
+    
+  def withdraw(self, withdrawal_amount):
+    self.balance = self.balance - withdrawal_amount
+    if (withdrawal_amount < 0 or withdrawal_amount > self.balance):
+      self.balance = self.balance - self.overdraft_penalty
+      return False
+    else: return self.balance
+
+  def accumulate_interest(self):
+    if (self.balance < 0):
+      self.balance = self.balance
+    else: 
+      self.balance = (self.balance * self.interest_rate) + self.balance
+    return self.balance
 
 basic_account = BankAccount()
 print(basic_account)
